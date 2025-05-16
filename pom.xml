@@ -13,7 +13,6 @@
     </properties>
     <groupId>com.singtel</groupId>
     <artifactId>SystemPayment</artifactId>
-    <version>0.0.1-SNAPSHOT</version> 
     <name>SystemPayment</name>
     <description>System Payment Singtel Telecomunication Application</description>
     <dependencies>
