@@ -12,7 +12,7 @@ import java.util.Base64;
 @Controller
 public class QRCodeController {
 
-    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/static/img/QRCode.png";
+    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/static/img/SystemPayment.png";
 
     @GetMapping("/")
     public String getQRCode(Model model){
