@@ -1,24 +1,100 @@
+
+
 #-------------------------------------------------------------------------------#
 #               Qodana analysis is configured by qodana.yaml file               #
 #             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
 #-------------------------------------------------------------------------------#
 version: "1.0"
+
 #Specify inspection profile for code analysis
 profile:
-  name: qodana.starter
+  name: qodana.recommended
+
 #Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
+include:
+  - name: CheckDependencyLicenses
+  - name: HttpUrlsUsage
+  - name: GrazieInspection
+    paths:
+      - site
+
 #Disable inspections
-#exclude:
-#  - name: <SomeDisabledInspectionId>
-#    paths:
-#      - <path/where/not/run/inspection>
-projectJDK: "17" #(Applied in CI/CD pipeline)
+exclude:
+  - name: All
+    paths:
+      - site/javascript/demos/tutorials/**/*
+      - site/javascript/tutorials/react_typescript_tdd/chrome_debugging/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/class_props/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/class_state/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/nodejs_debugging/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/presentation_components/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/project_cleanup/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/project_setup/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/rich_events_and_testing/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/testing/demos/**/*
+      - site/javascript/tutorials/react_typescript_tdd/tsx_es6/demos/**/*
+      - site/javascript/tutorials/eleventy-tsx/layouts/demos/**/*
+      - site/javascript/tutorials/eleventy-tsx/props/demos/**/*
+      - site/javascript/tutorials/eleventy-tsx/views/demos/**/*
+  - name: HttpUrlsUsage
+    paths:
+      - _includes
+      - src/plugins/absolutePaths.ts
+      - site/tags/json/json.svg
+      - site/tags/groovy/groovy.svg
+      - site/django/tutorials/django-aws/django-docker
+      - site/dotnet/tutorials/basics/entity-framework-core
+      - site/python/tutorials/fastapi-aws-kubernetes
+  - name: QodanaSanity
+    paths:
+      - deployment/helm/**/*
+  - name: GrazieInspection
+    paths:
+      - "**/*.js"
+      - "**/*.jsx"
+      - "**/*.ts"
+      - "**/*.tsx"
+  - name: AngularAmbiguousComponentTag
+  - name: AngularCliAddDependency
+  - name: AngularNonEmptyNgContent
+  - name: AngularInaccessibleSymbol
+  - name: AngularIncorrectTemplateDefinition
+  - name: AngularIncorrectBlockUsage
+  - name: AngularInsecureBindingToEvent
+  - name: AngularInvalidAnimationTriggerAssignment
+  - name: AngularBindingTypeMismatch
+  - name: AngularInvalidEntryComponent
+  - name: AngularInvalidI18nAttribute
+  - name: AngularInvalidImportedOrDeclaredSymbol
+  - name: AngularNonStandaloneComponentImports
+  - name: AngularNgOptimizedImage
+  - name: AngularMissingEventHandler
+  - name: AngularMissingOrInvalidDeclarationInModule
+  - name: AngularInvalidSelector
+  - name: AngularMissingRequiredDirectiveInputBinding
+  - name: AngularMultipleStructuralDirectives
+  - name: AngularForBlockNonIterableVar
+  - name: AngularDeferBlockOnTrigger
+  - name: AngularRecursiveModuleImportExport
+  - name: AngularInvalidTemplateReferenceVariable
+  - name: AngularUndefinedBinding
+  - name: AngularUndefinedModuleExport
+  - name: AngularUndefinedTag
+  - name: VueDataFunction
+  - name: VueDeprecatedSymbol
+  - name: VueDuplicateTag
+  - name: VueMissingComponentImportInspection
+  - name: VueUnrecognizedDirective
+  - name: VueUnrecognizedSlot
+
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
 #bootstrap: sh ./prepare-qodana.sh
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
+
 #Specify Qodana linter for analysis (Applied in CI/CD pipeline)
-linter: jetbrains/qodana-jvm-community:2025.1
+linter: jetbrains/qodana-js:latest
+
+#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
+plugins:
+  #  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
+  #  - id: org.intellij.plugins.markdown
+  - id: com.intellij.grazie.pro
